@@ -2,9 +2,7 @@ name: C Build and Run
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: ["main", "mai"]
 
 jobs:
   build:
@@ -13,6 +11,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Compile C program
+        run: gcc main.c -o main
+
+      - name: Run program
+        run: ./main
 
       - name: Compile C program
         run: gcc main.c -o main
