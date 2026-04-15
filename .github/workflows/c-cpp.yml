@@ -1,16 +1,21 @@
-pull_request: ''
-jobs: ''
-run: |-
-  "cd ctest
-  ./main
-  "
-branches: ''
-'---': ''
-'-': 'name: ''Run C program'''
-steps: ''
-push: ''
-'''on''': ''
-runs-on: '''ubuntu-latest'''
-build: ''
-name: '''C Build and Run'''
-uses: '''actions/checkout@v4'''
+name: C Build and Run
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Compile C program
+        run: gcc main.c -o main
+
+      - name: Run program
+        run: ./main
